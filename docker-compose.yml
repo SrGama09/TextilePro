@@ -1,0 +1,20 @@
+services:
+
+  textile_pro_api:
+    container_name: textile_pro_api
+    restart: unless-stopped
+    build:
+      context: .
+      dockerfile: /deploy/docker/Dockerfile
+    expose:
+      - 5000
+    ports:
+        - "5000:5000"
+    volumes:
+      - /var/log/textile_pro/textile_pro_api:/var/log/
+    networks:
+      - textile_pro_network
+
+networks:
+    textile_pro_network:
+      driver: bridge
